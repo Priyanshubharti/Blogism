@@ -26,7 +26,7 @@ export const generateErrorMessage = (data : any, status : number) =>{
 
 export const getAllBlogs = async (count?: number) =>{
     const res = await fetch("http://localhost:3000/api/blogs", {
-        cache : "no-store"
+       next : {revalidate: 60}
     })
     const data = await res.json();
     if(count){

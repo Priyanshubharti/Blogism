@@ -8,7 +8,7 @@ import React, { ChangeEvent, useState, useRef } from 'react'
 import { Editor } from "react-draft-wysiwyg"
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { useForm } from 'react-hook-form';
-import { Toaster, toast } from 'react-hot-toast';
+import {  toast } from 'react-hot-toast';
 
 
 const BlogAdd = () => {
@@ -67,7 +67,6 @@ toast.success("Your data has been sent successfully 🥳", {id : "postData"});
 
   return (
     <section className='w-full'>
-        <Toaster position='top-right'/>
         <div className='flex justify-between p-4 items-center '>
             <div className=' w-1/4'>
                 <span className=' font-extrabold mx-3 '> Author:</span>
