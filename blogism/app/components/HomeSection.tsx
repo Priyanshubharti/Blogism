@@ -2,79 +2,15 @@ import { getAllBlogs } from '@/lib/helpers'
 import Image from 'next/image'
 import React from 'react'
 import BlogItem from './BlogItem'
+import { blogs } from '@/lib/utils'
+import { BlogItemTypes } from '@/lib/types'
 
 const HomeSection = async () => {
-   const blogs = [
-    {
-       "id" :"6596c4b687c5f64a493b5116",
-       "title":"NextJS is ok",
-       "description":"<p>I don't like errors</p> <p> it is what it is</p>",
-       "imageUrl":"http://res.cloudinary.com/dzm9r0xf7/image/upload/v1704379574/Blogism/trajtk1sg2wkbbvblacg.jpg",
-       "userId":"6596921b6510f53c86a05e9b",
-       "createdAt":"2024-01-04T14:46:14.022Z",
-       "updatedAt":"2024-01-04T15:15:02.468Z",
-       "categoryId":"6596a17687c5f64a493b510a",
-       "location":"India"
-    },{
-        "id" :"6596c4b687c5f64a493b511654",
-       "title":"NextJS is ok",
-       "description":"<p>I don't like errors</p> <p> it is what it is</p>",
-       "imageUrl":"http://res.cloudinary.com/dzm9r0xf7/image/upload/v1704379574/Blogism/trajtk1sg2wkbbvblacg.jpg",
-       "userId":"6596921b6510f53c86a05e9b",
-       "createdAt":"2024-01-04T14:46:14.022Z",
-       "updatedAt":"2024-01-04T15:15:02.468Z",
-       "categoryId":"6596a17687c5f64a493b510a",
-       "location":"India"
-    },
-    {
-        "id" :"6596c4b687c5f64a493b51165",
-       "title":"NextJS is ok",
-       "description":"<p>I don't like errors</p> <p> it is what it is</p>",
-       "imageUrl":"http://res.cloudinary.com/dzm9r0xf7/image/upload/v1704379574/Blogism/trajtk1sg2wkbbvblacg.jpg",
-       "userId":"6596921b6510f53c86a05e9b",
-       "createdAt":"2024-01-04T14:46:14.022Z",
-       "updatedAt":"2024-01-04T15:15:02.468Z",
-       "categoryId":"6596a17687c5f64a493b510a",
-       "location":"India"
-    },
-    {
-        "id" :"6596c4b687c5f64a493b51164",
-       "title":"NextJS is ok",
-       "description":"<p>I don't like errors</p> <p> it is what it is</p>",
-       "imageUrl":"http://res.cloudinary.com/dzm9r0xf7/image/upload/v1704379574/Blogism/trajtk1sg2wkbbvblacg.jpg",
-       "userId":"6596921b6510f53c86a05e9b",
-       "createdAt":"2024-01-04T14:46:14.022Z",
-       "updatedAt":"2024-01-04T15:15:02.468Z",
-       "categoryId":"6596a17687c5f64a493b510a",
-       "location":"India"
-    },
-    {
-        "id" :"6596c4b687c5f64a493b51163",
-       "title":"NextJS is ok",
-       "description":"<p>I don't like errors</p> <p> it is what it is</p>",
-       "imageUrl":"http://res.cloudinary.com/dzm9r0xf7/image/upload/v1704379574/Blogism/trajtk1sg2wkbbvblacg.jpg",
-       "userId":"6596921b6510f53c86a05e9b",
-       "createdAt":"2024-01-04T14:46:14.022Z",
-       "updatedAt":"2024-01-04T15:15:02.468Z",
-       "categoryId":"6596a17687c5f64a493b510a",
-       "location":"India"
-    },
-    {
-        "id" :"6596c4b687c5f64a493b51162",
-       "title":"NextJS is ok",
-       "description":"<p>I don't like errors</p> <p> it is what it is</p>",
-       "imageUrl":"http://res.cloudinary.com/dzm9r0xf7/image/upload/v1704379574/Blogism/trajtk1sg2wkbbvblacg.jpg",
-       "userId":"6596921b6510f53c86a05e9b",
-       "createdAt":"2024-01-04T14:46:14.022Z",
-       "updatedAt":"2024-01-04T15:15:02.468Z",
-       "categoryId":"6596a17687c5f64a493b510a",
-       "location":"India"
-    },
-
-   ]
+   
+   
     
    
-    // const blogs = await getAllBlogs(6);
+     const blogs = await getAllBlogs(6);
   return (
     <section className='w-full my-4'>
         <div className='w-full flex xs:flex-col md:flex-row justify-center items-center' >
@@ -99,7 +35,7 @@ const HomeSection = async () => {
 
             </div>
             <div className='flex w-full flex-wrap justify-center'>
-                {blogs.slice().map((blog) => (
+                {blogs.slice().map((blog : BlogItemTypes) => (
                     <BlogItem {...blog} key={blog.id}/>
                 ) )}
             </div>

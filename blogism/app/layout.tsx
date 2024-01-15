@@ -9,6 +9,7 @@ import Footbar from './components/Footbar'
 export const metadata: Metadata = {
   title: 'Blogism',
   description: 'blog for all',
+  
 }
 
 export default function RootLayout({

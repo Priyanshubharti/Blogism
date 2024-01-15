@@ -9,15 +9,18 @@ type Props = {
     updatedAt: string;
     categoryId: string;
     location: string;
+    isProfile? : boolean
 }
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react'
 
 function getTextFromHtml(html : string) {
     const elm = window.document.createElement("span");
     elm.innerHTML = html;
-    return elm.innerText;
+    return elm.innerText.slice(0, 300);
 }
 
 const BlogItem = (props : Props) => {
@@ -35,7 +38,8 @@ const BlogItem = (props : Props) => {
       </p>
     </CardContent>
     <CardFooter className='w-full h-full p-3'>
-        <button className='ml-auto mt-auto border-[1px] p-3 rounded-lg hover:bg-violet-600 hover:text-violet-100 duration-500 font-semibold' >View More</button>
+        <Link href={`/blogs/view/${props.id}`} className='mr-auto mt-auto border-[1px] p-3 rounded-lg hover:bg-violet-600 hover:text-violet-100 duration-500 font-semibold' >View More</Link>
+    {props.isProfile &&    <Link href={`/blogs/edit/${props.id}`} className='ml-auto mt-auto border-[1px] p-3 rounded-lg hover:bg-violet-600 hover:text-violet-100 duration-500 font-semibold' >Edit Blog</Link>}
     </CardFooter>
    </Card>
   )
