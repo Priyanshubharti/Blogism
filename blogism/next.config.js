@@ -3,7 +3,9 @@ const nextConfig = {
     images:{
         domains : [
             "images.unsplash.com",
-            "res.cloudinary.com"
+            "res.cloudinary.com",
+            "avatars.githubusercontent.com",
+            "lh3.googleusercontent.com"
     ]
     },
     reactStrictMode : false,

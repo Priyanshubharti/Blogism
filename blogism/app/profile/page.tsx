@@ -32,10 +32,10 @@ const profilePage = async () => {
     <div className='w-full h-full flex flex-col'>
         <div className=' mx-auto'>
         <p className='text-center bg-slate-100 p-3 rounded-md font-semibold'>
-            Blog count {userData._count.blogs}</p>
+        ✨ Blog count {userData?._count?.blogs}</p>
     </div>
     <div className=' flex flex-wrap justify-center p-4 my-3' >
-        {userData?.blogs.map((blog) =>(
+        {userData?.blogs?.map((blog) =>(
             <BlogItem {...blog} key={blog.id} isProfile={true}/>
         ))}
     </div>

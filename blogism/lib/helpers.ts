@@ -1,4 +1,5 @@
 import prisma from "@/prisma";
+import { DefaultUser } from "next-auth";
 import { NextResponse } from "next/server";
 
 export const connectToDb = async() => {
@@ -51,3 +52,21 @@ export const getUserById = async (id : string) =>{
    
     return data;
 }
+
+export const verifyUserDetails = async (user: DefaultUser) => {
+    await connectToDb();
+    const isUserExists = await prisma.user.findFirst({
+      where: { email: user.email as string },
+    });
+    if (isUserExists) {
+      return null;
+    } else {
+      const newUser = await prisma.user.create({
+        data: {
+          email: user.email as string,
+          name: user.name as string,
+        },
+      });
+      return newUser;
+    }
+  };

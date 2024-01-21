@@ -1,7 +1,7 @@
 "use client";
 import React from 'react'
 import Logo from './Logo';
-import { useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 
 const authLinks = [
@@ -35,8 +35,9 @@ const Appbar = () => {
                 </Link>
               )
              )}
-
+               <button onClick={()=>{signOut()}}>LOGOUT</button>
            </div>
+
         </nav>
     </section>
   )
