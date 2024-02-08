@@ -5,6 +5,8 @@ import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { FaSearch } from 'react-icons/fa'
 import BlogItem from '../components/BlogItem'
+import axios from 'axios'
+
 
 const Search = () => {
     const {handleSubmit, register} = useForm();
@@ -16,16 +18,14 @@ const Search = () => {
       }
       toast.loading("Seaching...⏳", {id : "SEARCH"})
       try {
-        const res = await fetch(
+        const res = await axios.get(
             `http://localhost:3000/api/blogs/search?title=${str}`,
-            {cache : "no-store" }
         )
-        const data = await res.json();
+        const data = await res.data;
          setBlogs(data.blogs);
          toast.success("Searched Successful ✅", {id : "SEARCH"})
       } catch (error) {
         toast.error("Fetching Failed ⚠", {id : "SEARCH"})
-        console.log(error)
       }
     }
   return (

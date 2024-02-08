@@ -23,7 +23,7 @@ const HomeSection = async () => {
                 </p>
             </div>
             <div className='md:w-2/4 xs:w-3/4 md:mx-2 xs:my-2 ' >
-                  <Image className='w-full rounded-2xl drop-shadow-2xl ' alt='CarouselImage' width={300} height={200} 
+                  <Image className='w-full rounded-2xl drop-shadow-2xl object-cover' alt='CarouselImage' width={300} height={200} 
                   src={"https://images.unsplash.com/photo-1546074177-ffdda98d214f"}
                   />
             </div>

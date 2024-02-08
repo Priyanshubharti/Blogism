@@ -80,7 +80,7 @@ toast.success("Your data has been sent successfully 🥳", {id : "postData"});
         </div>
         {imageUrl && (
             <Image
-            className='mx-auto my-20 rounded-lg shadow-xl border-[3px] border-slate-900'
+            className='mx-auto my-20 rounded-lg shadow-xl border-[3px] border-slate-900 object-cover'
             src={imageUrl}
             alt="NewPost"
             width={1000}
@@ -117,7 +117,7 @@ toast.success("Your data has been sent successfully 🥳", {id : "postData"});
             className='md: w-[500px] sm:w-[300px] m-auto text-slate-900 bg-gray-100 p-4 rounded-xl'
             {...register("category", {required : true})}
             >
-                {categories.map((item)=>( <option value={item.id}>
+                {categories.map((item)=>( <option  key = {item.id} value={item.id}>
                     {item.name}
                 </option> ))}
               </select>

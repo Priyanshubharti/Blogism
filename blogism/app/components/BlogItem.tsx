@@ -1,30 +1,23 @@
 "use client";
-type Props = {
-    id: string;
-    title: string;
-    description: string;
-    imageUrl: string;
-    userId: string;
-    createdAt: string;
-    updatedAt: string;
-    categoryId: string;
-    location: string;
-    isProfile? : boolean
-}
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { BlogItemTypes } from '@/lib/types';
 
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
 import toast from 'react-hot-toast';
+import { MdLocationPin } from "react-icons/md";
 
-function getTextFromHtml(html : string) {
-    //@ts-ignore 
-    //@ts-nocheck
-    const elm = document.createElement("span");
-    elm.innerHTML = html;
-    return elm.innerText.slice(0, 300);
-}
+type Props = BlogItemTypes | null;
+
+function getTextFromHtml(html: string) {
+    if (document) {
+      const elm = document?.createElement("span");
+      elm.innerHTML = html;
+      return elm.innerText.slice(0, 300);
+    }
+    return html;
+  }
 
 const deleteBlog = async (id : string) =>{
     const res = await fetch(`http://localhost:3000/api/blogs/${id}`, {
@@ -37,7 +30,7 @@ const BlogItem = (props : Props) => {
     const handleDelete = async () =>{
         try {
             toast.loading("Deleting Blog 😒", {id : "delete"})
-            await deleteBlog(props.id)
+           props &&( await deleteBlog(props.id) )
             toast.success("Deleted Blog 👍", {id : "delete"})
         } catch (error) {
             toast.error("Error Deleting Blog 😵", {id : "delete"})
@@ -46,14 +39,19 @@ const BlogItem = (props : Props) => {
 
     }
   return (
+    props && (
    <Card className='hover:border-slate-950 duration-500 flex flex-col w-[400px] h-[550px] mx-4 my-2 rounded-lg'>
     <CardHeader>
-        <Image width={400} height={100} className='h-48 rounded-sm' alt={props.title} src={props.imageUrl ?? "https://images.unsplash.com/reserve/LJIZlzHgQ7WPSh5KVTCB_Typewriter.jpg"} />
+        <Image width={400} height={100} className='h-48 rounded-sm object-cover' alt={props.title} src={props.imageUrl ?? "https://images.unsplash.com/reserve/LJIZlzHgQ7WPSh5KVTCB_Typewriter.jpg"} />
     </CardHeader>
     <CardTitle className='p-3'>
         {props.title}
     </CardTitle>
     <CardContent className='w-full text-slate-900'>
+    <div className="flex justify-end gap-2 p-2 items-center font-semibold ">
+            <MdLocationPin size={20} className="text-purple-600" />
+            <p className="font-mono">{props.location}</p>
+          </div>
      <p className='w-full px-2 py-1 tracking-wide text-left'>
         {getTextFromHtml(props.description)}
       </p>
@@ -68,13 +66,16 @@ const BlogItem = (props : Props) => {
        className=' mt-auto border-[1px] p-3 rounded-lg hover:bg-violet-600 hover:text-violet-100 duration-500 font-semibold' >
         Edit Blog
         </Link>}
-        {props.isProfile &&    <button onClick={handleDelete}
+        {props.isProfile &&  (  <button onClick={handleDelete}
         className=' mt-auto border-[1px] p-3 rounded-lg hover:bg-violet-600 hover:text-violet-100 duration-500 font-semibold' >
             Delete Blog
-            </button>}
+            </button>
+            
+        )}
 
     </CardFooter>
    </Card>
+  )
   )
 }
 

@@ -13,7 +13,7 @@ import React from 'react'
     alt={blog.title}
     width={1000}
     height={1000}
-    className='md:w-2/4 xs:w-3/4 mx-auto my-8 drop-shadow-xl rounded-lg'
+    className='md:w-2/4 xs:w-3/4 mx-auto my-8 drop-shadow-xl rounded-lg object-cover'
     
     />
    <div className='md:w-2/4 xs:w-3/4 mx-auto my-8 '>
