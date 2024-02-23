@@ -30,10 +30,10 @@ const BlogsPage = () => {
   }, []);
   useEffect(() => {
     setFilteredData(blogs.filter((blog) => blog.title.includes(searchText)));
-  }, [searchText]);
+  }, [searchText, blogs]);
   useEffect(() => {
     setFilteredData(blogs.filter((blog) => blog.categoryId === filters));
-  }, [filters]);
+  }, [filters, blogs]);
   return (
     <section className="w-full h-full">
       <div className="flex flex-col gap-3 my-10 p-8 ">
